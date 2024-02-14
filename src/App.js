@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import { Route,Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './App.css';
+import { MAIN_PAGE, SIGNUP_PAGE } from './constants/Components_constants';
+import MainPage from './pages/MainPage';
+import Header from './components/Header/Header';
+import SignUpPage from './pages/SignUpPage';
+import Login from './components/Login/Login';
+
 
 function App() {
+  const isLoginOpen = useSelector(state => state.modal.isLoginOpen);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {isLoginOpen && <Login />}
+    <Header/>
+    <Routes>
+      <Route path={MAIN_PAGE} element={<MainPage/>}/>
+      <Route path={SIGNUP_PAGE} element={<SignUpPage/>}/>
+    </Routes>
+    </>
   );
 }
 

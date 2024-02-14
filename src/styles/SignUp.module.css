@@ -1,0 +1,48 @@
+.signUpWrap{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+
+}
+
+.signUpForm{
+  width: 24rem;
+  max-width: 24rem;
+  display: flex;
+  flex-direction: column;
+}
+.signUpText{
+  margin: 3rem 0;
+  text-align: center;
+}
+.emailText, .pwText, .confirmPwText{
+  font-size: 14px;
+  font-weight: 600;
+}
+.email, .pw, .confirmPw{
+  width: 100%;
+  outline: 1px solid #e2e2f1;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  margin: 8px 0 15px;
+  box-sizing: border-box;
+  border: none;
+}
+
+.email:focus, .pw:focus, .confirmPw:focus{
+  outline:1px solid black;
+}
+
+.signUpButton{
+  background-color: black;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 1rem 0;
+  box-sizing: border-box;
+  margin-top: 30px;
+  cursor: pointer;
+}

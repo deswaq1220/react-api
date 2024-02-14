@@ -1,0 +1,37 @@
+header{
+  display: flex;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 30px;
+  position: sticky;
+  z-index: 10;
+}
+
+.logoWrap{
+  display: flex;
+  align-items: center;
+}
+.logo{
+  font-size: 26px;
+  font-weight: 900;
+  cursor: pointer;
+}
+nav{
+  margin-left: 100px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.signWrap{
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 600;
+}
+.signWrap >li:not(:first-child){
+  margin-left: 16px;
+}
+.signWrap > li{
+  cursor: pointer;
+}
