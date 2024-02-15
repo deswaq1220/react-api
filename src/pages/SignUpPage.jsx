@@ -21,6 +21,7 @@ const SignUpPage = () => {
         { email, password },
       );
       console.log('회원가입 성공',response.data)
+      alert('회원가입 성공')
     } catch (error) {
       console.error("회원가입에러", error.response.data);
     }

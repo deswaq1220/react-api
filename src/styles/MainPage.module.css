@@ -1,0 +1,57 @@
+.mainWrap{
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 2rem;
+  box-sizing: border-box;
+}
+.mainText{
+  margin: 3rem 0;
+}
+
+.itemWrap{
+  width: 100%;
+  display: grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  row-gap: 3rem;
+  column-gap: 2rem;
+}
+.items{
+  width: 336px;
+}
+.itemImage {
+  transition: transform .2s ease; /* transform 속성을 0.3초 동안 부드럽게 변화시킴 */
+  margin-bottom: 1rem;
+}
+.itemImage > img{
+  width: 335px;
+}
+
+.itemBrands{
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.title{
+  font-size: .875rem;
+  font-weight: 800;
+}
+.description{
+  font-size: 15px;
+}
+
+.priceWrap{
+  font-size: .875rem;
+  font-weight: 800;
+  display: flex;
+  gap: 0.375rem;
+}
+.cost{
+  color: rgb(239,68,68);
+  text-decoration: line-through;
+}
+.itemImage:hover{
+  transform: scale(1.09);
+}
