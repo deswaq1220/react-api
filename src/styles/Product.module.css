@@ -1,0 +1,79 @@
+.main{
+  width: 100%;
+  max-width: 1024px;
+  padding: 2.5rem 2rem;
+  margin: 0 auto;
+}
+.section{
+  display: grid;
+  column-gap: 1.5rem;
+  grid-template-columns: repeat(2,minmax(0,1fr))
+}
+
+.productImg{
+  aspect-ratio: 3/4;
+  position: relative;
+}
+
+.productImg > img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.productWrap{
+  padding: 2rem 0;
+}
+.productName{
+  font-weight: 700;
+  font-size: 15px;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid #eee;
+  margin-bottom: .625rem;
+}
+.description{
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.descriptionWrap{
+  display: grid;
+  row-gap: 1.25rem;
+  grid-template-columns: repeat(5,minmax(0,1fr));
+  font-size: 15px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  font-weight: 500;
+}
+.originalPrice ,.price{
+  margin-bottom: 1.25rem;
+  display: flex;
+}
+
+
+.netPrice, .sales, .delivery ,.onlineStockText{
+  font-weight: 800;
+}
+
+.oriPriceText, .priceText , .deliveryType, .onlineStock{
+  grid-column: span 4/span 4;
+}
+
+.oriPriceText{
+  text-decoration:line-through;
+  color: rgb(239,68,68);
+}
+.priceText{
+  font-weight: 800;
+}
+
+.shoppingBasket{
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 15px;
+  font-weight: 800;
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}

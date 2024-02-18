@@ -2,8 +2,14 @@ import React, { useEffect, useState } from "react";
 import MainStyles from "../styles/MainPage.module.css";
 import instance from "../api/instance";
 import { GET_PRODUCTS_API } from "../api/api_constants";
+import Brands from "../components/Brands/Brands";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { PRODUCT_PAGE } from "../constants/Components_constants";
 
 const MainPage = () => {
+  const isModalOpen = useSelector((state) => state.BrandModal.isModalOpen)
+  const navigation = useNavigate();
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -18,12 +24,18 @@ const MainPage = () => {
     };
     fetchData();
   }, []);
+
+  const handleProductClick = (itemId) => {
+    navigation(`${PRODUCT_PAGE}/${itemId}`);
+  };
   return (
     <main className={MainStyles.mainWrap}>
+      {isModalOpen && <Brands/>}
+      
       <h1 className={MainStyles.mainText}>Trending</h1>
       <ul className={MainStyles.itemWrap}>
         {items.map((item) => (
-          <li key={item.id} className={MainStyles.items}>
+          <li key={item.id} className={MainStyles.items}onClick={() => handleProductClick(item.id)}>
             <div className={MainStyles.itemImage}>
               <img src={item.imgSrc} alt="brand"/>
             </div>
@@ -31,7 +43,7 @@ const MainPage = () => {
               <p className={MainStyles.title}>{item.brand.nameEn}</p>
               <p className={MainStyles.description}>{item.name}</p>
               <p className={MainStyles.priceWrap}>
-                <span className={MainStyles.cost}>₩{item.originalPrice}</span>₩{item.price}
+                <span className={MainStyles.cost}>₩{item.originalPrice.toLocaleString()}</span>₩{item.price.toLocaleString()}
               </p>
             </div>
           </li>

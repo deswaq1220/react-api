@@ -33,11 +33,12 @@ const Login = () => {
           },
         }
       );
+      
       localStorage.setItem('userStatus',response.data.success)
       alert('로그인 성공')
       navigate(MAIN_PAGE)
       handleClose()
-      console.log("로그인 성공", response);
+      console.log("로그인 성공!", response);
     } catch (error) {
       console.error("로그인 에러", error.response.data);
     }

@@ -1,9 +1,10 @@
 header{
   display: flex;
+  height: 4rem;
   border-bottom: 1px solid #eee;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 30px;
+  padding: 0 2.5rem;
   position: sticky;
   z-index: 10;
 }
@@ -17,7 +18,7 @@ header{
   font-weight: 900;
   cursor: pointer;
 }
-nav{
+.nav{
   margin-left: 100px;
   font-weight: 600;
   cursor: pointer;

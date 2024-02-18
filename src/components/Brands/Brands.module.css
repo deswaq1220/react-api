@@ -1,0 +1,41 @@
+.navWrap{
+margin: 0 auto;
+background-color: white;
+
+}
+
+.brandNav{
+  display: flex;
+  flex-direction: column;
+}
+.brandText, .brandSubText{
+  text-align: center;
+}
+
+.brandText{
+  font-size: 30px;
+}
+
+.brandSubText{
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 1.5rem;
+}
+
+.brandText{
+  padding: 3rem 0;
+}
+
+
+.brandWrap{
+  row-gap: 1.25rem;
+  column-gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(6,minmax(0,1fr));
+}
+.brandsItem{
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
