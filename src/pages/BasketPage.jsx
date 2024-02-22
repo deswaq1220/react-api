@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import cartStyle from "../styles/BasketPage.module.css";
 import instance from "../api/instance";
 import { CART_API } from "../api/api_constants";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MAIN_PAGE, PRODUCT_PAGE } from "../constants/Components_constants";
 const BasketPage = () => {
   const [cartItem, setCartItem] = useState([]);

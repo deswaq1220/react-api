@@ -1,29 +1,29 @@
 import axios from "axios";
-import { REFRESH_TOKEN } from "./api_constants";
+
 
 const instance = axios.create({
   baseURL: "https://port-0-express-server-17xco2nlsidlckv.sel5.cloudtype.app",
   withCredentials: true,
 });
 
-const refreshToken = async () => {
-  try {
-    const refreshToken = getCookie("refresh_token"); // 쿠키에서 리프레시 토큰을 가져옵니다.
+// const refreshToken = async () => {
+//   try {
+//     const refreshToken = getCookie("refresh_token"); // 쿠키에서 리프레시 토큰을 가져옵니다.
 
-    const response = await instance.get(REFRESH_TOKEN, {
-      headers: {
-        Authorization: `Bearer ${refreshToken}`,
-      },
-    });
+//     const response = await instance.get(REFRESH_TOKEN, {
+//       headers: {
+//         Authorization: `Bearer ${refreshToken}`,
+//       },
+//     });
 
-    if (response.data && response.data.accessToken) {
-      const accessToken = response.data.accessToken;
-      setCookie("access_token", accessToken, 1); // 새로운 엑세스 토큰을 쿠키에 저장합니다.
-    }
-  } catch (error) {
-    console.error("토큰 갱신 중 에러 발생", error);
-  }
-};
+//     if (response.data && response.data.accessToken) {
+//       const accessToken = response.data.accessToken;
+//       setCookie("access_token", accessToken, 1); // 새로운 엑세스 토큰을 쿠키에 저장합니다.
+//     }
+//   } catch (error) {
+//     console.error("토큰 갱신 중 에러 발생", error);
+//   }
+// };
 
 export default instance;
 

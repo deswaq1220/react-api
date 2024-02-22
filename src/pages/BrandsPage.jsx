@@ -3,7 +3,6 @@ import instance from "../api/instance";
 import { GET_BRAND_API } from "../api/api_constants";
 import { useNavigate, useParams } from "react-router-dom";
 import brand from "../styles/BrandsPage.module.css";
-import { useSelector } from "react-redux";
 import Brands from "../components/Brands/Brands";
 import { PRODUCT_PAGE } from "../constants/Components_constants";
 const BrandsPage = () => {
