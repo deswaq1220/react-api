@@ -1,25 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import headerStyles from "./Header.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openLoginModal } from "../../actions/actions";
-import { MAIN_PAGE, SIGNUP_PAGE } from "../../constants/Components_constants";
+import { CART_PAGE, MAIN_PAGE, SIGNUP_PAGE } from "../../constants/Components_constants";
 import instance from "../../api/instance";
 import { LOG_OUT_API } from "../../api/api_constants";
 import { closeBrandModal, openBrandModal } from "../../actions/BrandModalActions";
+import { logout } from "../../actions/loginActions";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useSelector(state => state.auth);
 
-  useEffect(() => {
-    const userStatus = localStorage.getItem("userStatus");
-    setIsLoggedIn(!!userStatus); 
-  }, []);
+
+ 
 
   const handleClick = () => {
     dispatch(openLoginModal());
-
   };
 
   const handleBrandModalClick = () => {
@@ -35,15 +33,19 @@ const Header = () => {
     navigate(MAIN_PAGE);
     dispatch(closeBrandModal())
   };
+
+  const handleCartClick = () => {
+    navigate(CART_PAGE)
+  }
   
   
 
   const handleLogOut = async() => {
-    localStorage.clear()
     try {
-       await instance.delete(LOG_OUT_API)
-       setIsLoggedIn(false)
+      await instance.delete(LOG_OUT_API)
       alert('로그아웃 성공')
+      
+      dispatch(logout());
     } catch (error) {
       console.error('로그아웃 에러',error)
     }
@@ -63,7 +65,7 @@ const Header = () => {
       <ul className={headerStyles.signWrap}>
         {isLoggedIn ? (
           <>
-            <li>
+            <li onClick={handleCartClick}>
               <p>장바구니</p>
             </li>
             <li onClick={handleLogOut}>

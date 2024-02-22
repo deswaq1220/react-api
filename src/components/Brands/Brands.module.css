@@ -1,6 +1,8 @@
 .navWrap{
+  max-width: 1024px;
 margin: 0 auto;
 background-color: white;
+margin-bottom: 4rem
 
 }
 
@@ -38,4 +40,7 @@ background-color: white;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+}
+.brandsItem:hover{
+  font-weight: 600;
 }

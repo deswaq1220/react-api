@@ -37,7 +37,7 @@ const MainPage = () => {
         {items.map((item) => (
           <li key={item.id} className={MainStyles.items}onClick={() => handleProductClick(item.id)}>
             <div className={MainStyles.itemImage}>
-              <img src={item.imgSrc} alt="brand"/>
+              <img src={item.imgSrc} alt={item.nameKr}/>
             </div>
             <div className={MainStyles.itemBrands}>
               <p className={MainStyles.title}>{item.brand.nameEn}</p>

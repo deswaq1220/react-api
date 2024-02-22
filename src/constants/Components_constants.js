@@ -1,3 +1,5 @@
 export const MAIN_PAGE = '/'
 export const SIGNUP_PAGE ='/sign-up'
 export const PRODUCT_PAGE = '/products'
+export const BRAND_PAGE ='/brands'
+export const CART_PAGE = '/cart'

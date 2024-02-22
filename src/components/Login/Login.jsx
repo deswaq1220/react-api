@@ -6,6 +6,7 @@ import { closeLoginModal } from "../../actions/actions";
 import axios from "axios";
 import { LOGIN_API } from "../../api/api_constants";
 import { MAIN_PAGE } from "../../constants/Components_constants";
+import { login } from "../../actions/loginActions";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,12 +32,14 @@ const Login = () => {
           headers: {
             Authorization: `Basic ${btoa(email + ":" + password)}`,
           },
+          withCredentials: true,  
         }
       );
       
-      localStorage.setItem('userStatus',response.data.success)
+      
       alert('로그인 성공')
       navigate(MAIN_PAGE)
+      dispatch(login())
       handleClose()
       console.log("로그인 성공!", response);
     } catch (error) {

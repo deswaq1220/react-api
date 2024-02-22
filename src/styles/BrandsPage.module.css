@@ -1,0 +1,45 @@
+
+
+.brandsWrap{
+  display: grid;
+  flex-grow: 1;
+  row-gap: 3rem;
+  column-gap:2rem;
+  grid-template-columns: repeat(6,minmax(0,1fr));
+  padding: 2.5rem 2rem;
+  box-sizing: border-box;
+}
+
+.wrap{
+  width: 100%;
+  height: auto;
+}
+
+.img>img{
+  width: 100%;
+}
+
+.img{
+  margin-bottom: 1rem;
+}
+
+.nameEn{
+  font-size: .875rem;
+  font-weight: 800;
+}
+
+.name{
+  font-size: 15px;
+}
+
+.priceWrap{
+  font-size: .875rem;
+  font-weight: 800;
+  display: flex;
+  gap: 0.375rem;
+}
+
+.originalPrice{
+  color: rgb(239,68,68);
+  text-decoration: line-through;
+}
