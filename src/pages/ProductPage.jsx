@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import productStyles from "../styles/Product.module.css";
 import instance from "../api/instance";
 import { GET_PRODUCT_API, ADD_ITEM_TO_CART_API, CART_API } from "../api/api_constants";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { openLoginModal } from "../actions/actions";
+import { BRAND_PAGE } from "../constants/Components_constants";
 const ProductPage = () => {
   const [products, setProducts] = useState({});
   const { productId } = useParams();
@@ -12,6 +13,7 @@ const ProductPage = () => {
   let buttonClass = inCart ? productStyles.removeFromCart : productStyles.shoppingBasket;
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.auth) 
+  const navigate = useNavigate();
   
   useEffect(() => {
     const fetchData = async () => {
@@ -57,6 +59,10 @@ const ProductPage = () => {
       console.error("장바구니 제거 에러", error);
     }
   };
+  
+  const handleClick = (brandId) => {
+    navigate(`${BRAND_PAGE}/${brandId}`)
+  }
 
 
 
@@ -68,7 +74,7 @@ const ProductPage = () => {
             <img src={products.imgSrc} alt={products.brand.nameKr} />
           </div>
           <div className={productStyles.productWrap}>
-            <div className={productStyles.productName}>
+            <div className={productStyles.productName} onClick={() => handleClick(products.brand.id)}>
               {products.brand.nameKr} / {products.brand.nameEn}
             </div>
             <div className={productStyles.description}>{products.name}</div>

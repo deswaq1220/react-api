@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import cartStyle from "../styles/BasketPage.module.css";
 import instance from "../api/instance";
 import { CART_API } from "../api/api_constants";
-import { useNavigate } from "react-router-dom";
-import { MAIN_PAGE } from "../constants/Components_constants";
+import { Link, useNavigate } from "react-router-dom";
+import { MAIN_PAGE, PRODUCT_PAGE } from "../constants/Components_constants";
 const BasketPage = () => {
   const [cartItem, setCartItem] = useState([]);
   const [count, setCount] = useState(0);
@@ -34,6 +34,10 @@ const BasketPage = () => {
     navigate(MAIN_PAGE)
   }
 
+  const handleItemClick = (productId) => {
+    navigate(`${PRODUCT_PAGE}/${productId}`)
+  }
+
   
   return (
     <div className={cartStyle.cartWrap}>
@@ -49,8 +53,8 @@ const BasketPage = () => {
             <div className={cartStyle.img}>
               <img src={item.product.imgSrc} alt={item.product.brand.nameKr} />
             </div>
-            <div className={cartStyle.cartItemText}>
-              <p className={cartStyle.names}>
+            <div className={cartStyle.cartItemText} >
+              <p className={cartStyle.names} onClick={() => handleItemClick(item.product.id)}>
                 {item.product.brand.nameKr}/{item.product.brand.nameEn}
               </p>
               <p className={cartStyle.name}>{item.product.name}</p>

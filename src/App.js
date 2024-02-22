@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./App.css";
-import { BRAND_PAGE, CART_PAGE, MAIN_PAGE, PRODUCT_PAGE, SIGNUP_PAGE } from "./constants/Components_constants";
+import { BRAND_PAGE, CART_PAGE, PRODUCT_PAGE, SIGNUP_PAGE } from "./constants/Components_constants";
 import MainPage from "./pages/MainPage";
 import Header from "./components/Header/Header";
 import SignUpPage from "./pages/SignUpPage";

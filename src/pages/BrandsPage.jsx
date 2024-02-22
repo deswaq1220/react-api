@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import instance from "../api/instance";
 import { GET_BRAND_API } from "../api/api_constants";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import brand from "../styles/BrandsPage.module.css";
 import { useSelector } from "react-redux";
 import Brands from "../components/Brands/Brands";
+import { PRODUCT_PAGE } from "../constants/Components_constants";
 const BrandsPage = () => {
   const [brands, setBrands] = useState([]);
   const { brandId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,12 +24,16 @@ const BrandsPage = () => {
     fetchData();
   }, [brandId]);
 
+  const handleClick = (productId) => {
+    navigate(`${PRODUCT_PAGE}/${productId}`)
+  }
+
   return (
     <main className={brand.wrap}>
       <Brands />
       <div className={brand.brandsWrap}>
         {brands.map((item) => (
-          <div key={item.id} className={brand.wrap}>
+          <div key={item.id} className={brand.wrap} onClick={() => handleClick(item.id)}>
             <div className={brand.img}>
               <img src={item.imgSrc} alt={item.name} />
             </div>
