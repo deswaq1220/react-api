@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import cartStyle from "../styles/BasketPage.module.css";
-import instance from "../api/instance";
-import { CART_API } from "../api/api_constants";
 import { useNavigate } from "react-router-dom";
+import { CART_API } from "../api/api_constants";
+import instance from "../api/instance";
 import { MAIN_PAGE, PRODUCT_PAGE } from "../constants/Components_constants";
+import cartStyle from "../styles/BasketPage.module.css";
 const BasketPage = () => {
   const [cartItem, setCartItem] = useState([]);
-  const [count, setCount] = useState(0);
+  const [itemCount, setItemCount] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,30 +22,37 @@ const BasketPage = () => {
     fetchData();
   }, []);
 
-  const handleCountChange = (action) => {
+  const handleCountChange = (action, id) => {
     if (action === "plus") {
-      setCount((prevCount) => prevCount + 1);
-    } else if (action === "minus" && count > 0) {
-      setCount((prevCount) => prevCount - 1);
+      setItemCount((prevState) => ({
+        ...prevState,
+        [id]: (prevState?.[id] ?? 0) + 1,
+      }));
+    } else if (action === "minus" && (itemCount?.[id] ?? 0) > 0) {
+      setItemCount((prevState) => ({
+        ...prevState,
+        [id]: (prevState?.[id] ?? 0) - 1,
+      }));
     }
   };
 
   const handleShop = () => {
-    navigate(MAIN_PAGE)
-  }
+    navigate(MAIN_PAGE);
+  };
 
   const handleItemClick = (productId) => {
-    navigate(`${PRODUCT_PAGE}/${productId}`)
-  }
+    navigate(`${PRODUCT_PAGE}/${productId}`);
+  };
 
-  
   return (
     <div className={cartStyle.cartWrap}>
       <h1 className={cartStyle.cartText}>장바구니</h1>
       {cartItem.length === 0 ? (
         <div className={cartStyle.emptyCart}>
           <p>장바구니가 비어 있습니다.</p>
-          <button className={cartStyle.shopButton} onClick={handleShop}>쇼핑하러 가기</button>
+          <button className={cartStyle.shopButton} onClick={handleShop}>
+            쇼핑하러 가기
+          </button>
         </div>
       ) : (
         cartItem.map((item) => (
@@ -53,8 +60,11 @@ const BasketPage = () => {
             <div className={cartStyle.img}>
               <img src={item.product.imgSrc} alt={item.product.brand.nameKr} />
             </div>
-            <div className={cartStyle.cartItemText} >
-              <p className={cartStyle.names} onClick={() => handleItemClick(item.product.id)}>
+            <div className={cartStyle.cartItemText}>
+              <p
+                className={cartStyle.names}
+                onClick={() => handleItemClick(item.product.id)}
+              >
                 {item.product.brand.nameKr}/{item.product.brand.nameEn}
               </p>
               <p className={cartStyle.name}>{item.product.name}</p>
@@ -65,21 +75,24 @@ const BasketPage = () => {
                 ₩{item.product.price.toLocaleString()}
               </p>
               <p className={cartStyle.onlineStock}>
-                {item.product.deliveryType} | 잔여재고 {item.product.onlineStock}
+                {item.product.deliveryType} | 잔여재고{" "}
+                {item.product.onlineStock}
                 ea
               </p>
             </div>
             <div className={cartStyle.buttonWrap}>
               <button
                 className={cartStyle.minus}
-                onClick={() => handleCountChange("minus")}
+                onClick={() => handleCountChange("minus", item.id)}
               >
                 -
               </button>
-              <span className={cartStyle.count}>{count}</span>
+              <span className={cartStyle.count}>
+                {itemCount?.[item.id] ?? 0}
+              </span>
               <button
                 className={cartStyle.plus}
-                onClick={() => handleCountChange("plus")}
+                onClick={() => handleCountChange("plus", item.id)}
               >
                 +
               </button>
